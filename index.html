@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nuvora is a fictional white-label booking platform demo by Leo Boccalini." />
+    <title>Nuvora — White-label booking demo</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230d1726'/%3E%3Cpath d='M15 39h34M21 39l3-15h16l3 15M22 45h4m12 0h4' fill='none' stroke='%23c4f26d' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <style>
+      :root { --ink:#101a29; --navy:#0d1726; --muted:#667085; --lime:#c4f26d; --mist:#f3f6f8; --line:#dce3e8; --white:#fff; }
+      * { box-sizing:border-box; } body { margin:0; color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--mist); }
+      button,input,select { font:inherit; } button { cursor:pointer; }
+      .top { background:var(--navy); color:white; padding:22px clamp(22px,6vw,92px) 78px; }
+      nav { max-width:1220px; margin:auto; display:flex; justify-content:space-between; align-items:center; } .brand { font-weight:800; font-size:1.35rem; letter-spacing:-.04em; } .brand i{ color:var(--lime); font-style:normal; } nav span { color:#b8c2cd; font-size:.92rem; }
+      .intro { max-width:1220px; margin:76px auto 0; } .eyebrow { color:var(--lime); font-size:.78rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+      h1 { max-width:670px; font-size:clamp(2.4rem,5vw,4.7rem); line-height:1.03; letter-spacing:-.065em; margin:16px 0 13px; } .intro p { max-width:510px; color:#c2ccd5; font-size:1.08rem; line-height:1.6; margin:0; }
+      main { max-width:1220px; margin:-36px auto 0; padding:0 20px 66px; display:grid; grid-template-columns:minmax(0,1.55fr) minmax(280px,.72fr); gap:24px; }
+      .panel { background:white; border:1px solid #e6ebef; border-radius:20px; box-shadow:0 18px 35px rgba(12,24,38,.08); }
+      .booking { padding:30px; } .steps { display:flex; gap:10px; margin-bottom:31px; } .step { width:32px; height:5px; border-radius:10px; background:#dde4e8; } .step.active { background:var(--lime); }
+      h2 { margin:0; letter-spacing:-.04em; font-size:1.5rem; } .caption { color:var(--muted); margin:8px 0 24px; font-size:.95rem; }
+      .fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .field { border:1px solid var(--line); border-radius:12px; padding:10px 13px; background:#fff; } .field.wide { grid-column:1/-1; } label { display:block; font-size:.72rem; color:var(--muted); font-weight:700; margin-bottom:5px; } input,select { border:0; outline:0; width:100%; color:var(--ink); font-weight:650; background:transparent; }
+      .vehicle-title { display:flex; justify-content:space-between; align-items:end; margin:32px 0 13px; } .vehicle-title small { color:var(--muted); }
+      .vehicles { display:grid; grid-template-columns:repeat(3,1fr); gap:11px; } .vehicle { text-align:left; padding:16px; border:1px solid var(--line); background:#fff; border-radius:14px; transition:.18s; } .vehicle:hover,.vehicle.selected { border-color:#93b64d; background:#f9ffed; box-shadow:0 0 0 2px rgba(196,242,109,.22); } .car { font-size:1.55rem; display:block; margin-bottom:15px; } .vehicle strong,.vehicle small { display:block; } .vehicle small { color:var(--muted); margin-top:4px; font-size:.78rem; }
+      .side { align-self:start; padding:27px; background:#e8f4db; border:0; box-shadow:none; } .route { display:flex; gap:13px; align-items:stretch; margin:25px 0; } .dots { display:flex; flex-direction:column; align-items:center; color:#7b9b42; font-size:1.1rem; } .dots:after { content:""; flex:1; border-left:1px dashed #98ad77; margin:4px 0; } .route p { margin:0; font-size:.77rem; color:var(--muted); } .route b { display:block; margin-top:3px; font-size:.93rem; }
+      .summary { border-top:1px solid #c8deac; padding-top:18px; } .row { display:flex; justify-content:space-between; color:#516147; font-size:.9rem; margin:11px 0; } .total { color:var(--ink); font-size:1.25rem; font-weight:800; margin-top:19px; }
+      .confirm { width:100%; margin-top:23px; background:var(--navy); color:white; padding:15px 18px; border:0; border-radius:11px; font-weight:800; } .confirm:hover { background:#1a2b43; } .note { font-size:.75rem; line-height:1.5; color:#607052; margin:13px 0 0; }
+      .proof { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,1fr); gap:17px; padding:5px 2px; } .proof div { padding:18px 8px; } .proof b { font-size:1.55rem; display:block; letter-spacing:-.04em; } .proof span { color:var(--muted); font-size:.88rem; }
+      dialog { border:0; border-radius:20px; max-width:420px; padding:0; box-shadow:0 25px 70px rgba(0,0,0,.25); } dialog::backdrop { background:rgba(7,14,24,.65); } .modal { padding:32px; } .modal .tick { width:45px; height:45px; display:grid; place-items:center; border-radius:50%; background:#e8f4db; color:#4c7120; font-size:1.4rem; } .modal h2 { margin:18px 0 9px; } .modal p { color:var(--muted); line-height:1.55; } .modal button { border:0; background:var(--navy); color:#fff; padding:12px 18px; border-radius:9px; font-weight:750; }
+      footer { text-align:center; padding:26px; color:#7d8993; font-size:.78rem; }
+      @media(max-width:800px){ .top{padding-bottom:64px}.intro{margin-top:55px}.intro p{font-size:1rem}main{grid-template-columns:1fr;margin-top:-29px;padding:0 14px 42px}.booking{padding:23px}.vehicles{grid-template-columns:1fr}.proof{grid-template-columns:1fr 1fr}.side{order:2}.fields{grid-template-columns:1fr}.field.wide{grid-column:auto} }
+    </style>
+  </head>
+  <body>
+    <header class="top"><nav><div class="brand">nuv<i>ora</i></div><span>White-label booking platform · Demo</span></nav><section class="intro"><div class="eyebrow">Mobility & travel booking demo</div><h1>One booking engine. Any journey.</h1><p>A fictional, white-label booking flow for executive mobility, aviation, and nautical services.</p></section></header>
+    <main>
+      <section class="panel booking"><div class="steps"><i class="step active"></i><i class="step"></i><i class="step"></i></div><h2>Plan your journey</h2><p class="caption">Choose a service, route, timing, and option that fits your trip.</p>
+        <div class="fields"><div class="field wide"><label for="pickup">Pick-up</label><input id="pickup" value="Zurich Airport (ZRH)" /></div><div class="field wide"><label for="dropoff">Drop-off</label><input id="dropoff" value="Zurich City Centre" /></div><div class="field"><label for="date">Date</label><input id="date" type="date" /></div><div class="field"><label for="time">Pick-up time</label><input id="time" type="time" value="14:30" /></div><div class="field"><label for="passengers">Passengers</label><select id="passengers"><option>1 passenger</option><option selected>2 passengers</option><option>3 passengers</option><option>4 passengers</option></select></div><div class="field"><label for="flight">Flight number <em>(optional)</em></label><input id="flight" placeholder="e.g. LX 123" /></div></div>
+        <div class="vehicle-title"><h2>Choose your service</h2><small>Example rates only</small></div><div class="vehicles"><button class="vehicle selected" data-name="Executive transfer" data-price="94"><span class="car">◒</span><strong>Executive transfer</strong><small>Road mobility</small></button><button class="vehicle" data-name="Private flight" data-price="1280"><span class="car">✈</span><strong>Private flight</strong><small>Aviation</small></button><button class="vehicle" data-name="Yacht charter" data-price="980"><span class="car">⛵</span><strong>Yacht charter</strong><small>Nautical</small></button></div>
+      </section>
+      <aside class="panel side"><div class="eyebrow" style="color:#587d25">Booking summary</div><div class="route"><div class="dots">●<br>●</div><div><p>Departure</p><b id="summaryPickup">Zurich Airport (ZRH)</b><p style="margin-top:17px">Destination</p><b id="summaryDropoff">Zurich City Centre</b></div></div><div class="summary"><div class="row"><span id="summaryVehicle">Executive transfer</span><span id="price">CHF 94</span></div><div class="row"><span>Service details</span><span>Included</span></div><div class="row total"><span>Estimated total</span><span id="total">CHF 94</span></div></div><button class="confirm" id="confirm">Request this service →</button><p class="note">Demo only. No payment or personal information is processed.</p></aside>
+      <section class="proof"><div><b>Responsive</b><span>Designed for desktop and mobile booking.</span></div><div><b>Fictional data</b><span>Safe to explore without customer information.</span></div><div><b>Product flow</b><span>Route, vehicle choice, and instant estimate.</span></div></section>
+    </main><footer>Nuvora is a fictional white-label product demo created by Leo Boccalini.</footer>
+    <dialog id="dialog"><div class="modal"><div class="tick">✓</div><h2>Service request created</h2><p>Your demo request for <b id="modalVehicle">Executive transfer</b> has been recorded. In a production version, the next step would collect passenger details and payment.</p><button id="close">Back to booking</button></div></dialog>
+    <script>
+      const date=document.querySelector('#date'); date.valueAsDate=new Date(Date.now()+86400000);
+      let price=94, vehicle='Executive transfer'; const fmt=n=>`CHF ${n}`;
+      document.querySelectorAll('.vehicle').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.vehicle').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');price=Number(button.dataset.price);vehicle=button.dataset.name;document.querySelector('#summaryVehicle').textContent=vehicle;document.querySelector('#price').textContent=fmt(price);document.querySelector('#total').textContent=fmt(price)}));
+      [['pickup','summaryPickup'],['dropoff','summaryDropoff']].forEach(([input,target])=>document.querySelector('#'+input).addEventListener('input',e=>document.querySelector('#'+target).textContent=e.target.value||'—'));
+      const dialog=document.querySelector('#dialog');document.querySelector('#confirm').addEventListener('click',()=>{document.querySelector('#modalVehicle').textContent=vehicle;dialog.showModal()});document.querySelector('#close').addEventListener('click',()=>dialog.close());
+    </script>
+  </body>
+</html>
