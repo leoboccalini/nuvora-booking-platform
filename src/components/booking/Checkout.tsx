@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { PricingService } from "../../services/PricingService";
 import { useSearchParams } from "react-router-dom";
 import { BookingData, Time, BillingInformation, LocationSuggestion, VehicleClass } from "../../types";
 import { CountrySelector } from "./CountrySelector";
