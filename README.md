@@ -1,24 +1,44 @@
-# Nuvora — White-label Booking Platform Demo
+# Nuvora — Booking Platform
 
-Nuvora is a fictional white-label booking experience for executive mobility, aviation, nautical services, and other appointment-based premium services. It is an independent product demo by Leo Boccalini.
+A public portfolio beta by **Leo Boccalini**, adapted from his existing booking application built with AI-assisted development.
 
-**[View the live demo](https://nuvora-booking-platform.vercel.app/)**
+[Live demo](https://nuvora-booking-platform.vercel.app/) · [Author](https://github.com/leoboccalini)
 
-## What it demonstrates
+## Explore the flow
 
-- A responsive booking flow for a transport service
-- Route details, date/time, passengers, and vehicle selection
-- Instant price estimates with fictional data
-- Clear confirmation state without payment or personal-data processing
+1. Choose a one-way journey or hourly service, locations, date and time.
+2. Select Business, Electric, Business Van/SUV or First Class.
+3. Edit the journey, fictional guest details, pickup instructions and billing information.
+4. Review the itemized estimate and confirm a simulated booking.
+5. Open the confirmation ticket and expand the full details.
 
-## Scope
+Use the prefilled fictional passenger. This is not an operational booking service.
 
-This project is a clean-room beta inspired by common booking-product patterns. It contains no client branding, production code, credentials, payment integration, customer information, or external API calls.
+## Relationship to the original product
 
-## Run locally
+This version reuses the author's React booking form, custom calendar/time controls, category selection, editable checkout sections, confirmation ticket, formatting and pricing functions. The original dark and gold visual system and responsive layouts are retained.
 
-Open `index.html` in a browser, or serve the directory with any static-file server.
+Production services are replaced at explicit boundaries: local location suggestions, illustrative route diagrams, fictional prices and simulated payment. The original private repository is untouched. Its Git history, credentials, customer data and infrastructure files are not included.
 
-## Stack
+The public beta currently demonstrates **ground transport**. Aviation, helicopters and nautical service catalogs are future extensions of the product concept, not implemented features of this release.
 
-Plain HTML, CSS, and JavaScript. The project intentionally has no build step or runtime dependencies.
+## Technology
+
+React 18 · TypeScript · Vite · Tailwind CSS · React Router
+
+No API keys or backend setup are required. Guest and billing edits exist only in memory; refreshing resets them. Journey details use session storage to move from the form to checkout. No card fields, payment requests, emails or real reservations exist in this beta.
+
+## Development
+
+Use Node.js 22 or newer.
+
+```sh
+npm install
+npm run dev
+npm run build
+npm test
+```
+
+Vercel configuration builds the Vite application and supports direct navigation to booking routes. The production content policy blocks outbound API connections and embedded payment frames.
+
+See [architecture and adaptation notes](docs/ADAPTATION.md) for the source-derived components and demo boundaries.
