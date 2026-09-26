@@ -626,6 +626,9 @@ const BookingFormReference: React.FC<BookingFormProps> = ({ onSearch }) => {
 
         
         <div className="px-4 sm:px-6 pb-4 sm:pb-6 space-y-4">
+          <div className="grid grid-cols-2 gap-2" aria-label="Journey type">
+            {[[BookingType.OneWay, 'One way'], [BookingType.ByTheHour, 'By the hour']].map(([value, label]) => <button key={value} type="button" aria-pressed={bookingType === value} onClick={() => { setBookingType(value as BookingType); setErrors({}); setActiveField(null); }} className={`rounded-lg py-3 text-sm font-semibold ${bookingType === value ? 'bg-[#FFD900] text-black' : 'bg-gray-100 text-gray-600'}`}>{label}</button>)}
+          </div>
           {bookingType === BookingType.OneWay
             ? renderOneWayForm()
             : renderByTheHourForm()}

@@ -1211,14 +1211,11 @@ export const Checkout: React.FC<CheckoutProps> = ({ bookingData, bookingId, onCo
                 if (!displayPrice) {
                     displayPrice = vehicleOption.price;
                 }
-                if (bookingData?.pickupInfo?.notes?.toUpperCase().includes("TEST1CHF")) {
-                    displayPrice = 1.00;
-                }
                 if (displayPrice === 0 || !displayPrice) {
                 }
                 const subtotal = displayPrice ? displayPrice / 1.081 : 0;
                 const tax = displayPrice ? displayPrice - subtotal : 0;
-                return (<div key={vehicleOption.id} id={`vehicle-${vehicleOption.id}`} className={`py-2 sm:py-6 px-3 sm:px-4 relative cursor-pointer transition-all
+                return (<div key={vehicleOption.id} id={`vehicle-${vehicleOption.id}`} role="button" tabIndex={0} aria-label={`Select ${vehicleOption.name}`} aria-pressed={isSelected} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedVehicleId(vehicleOption.id); } }} className={`py-2 sm:py-6 px-3 sm:px-4 relative cursor-pointer transition-all
                                 ${isSelected
                         ? "bg-[#FFD900] ring-2 ring-[#FFD900]"
                         : "bg-gradient-to-br from-gray-800/20 via-[#0D0D0D] to-[#0D0D0D] hover:from-gray-700/30"}
@@ -2020,6 +2017,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ bookingData, bookingId, onCo
                 return;
             }
             try {
+                if (isEditingVehicle) await handleSaveVehicleEdit();
                 await onConfirm();
             }
             catch (error: any) {
@@ -2158,6 +2156,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ bookingData, bookingId, onCo
                 return;
             }
             try {
+                if (isEditingVehicle) await handleSaveVehicleEdit();
                 await onConfirm();
             }
             catch (error: any) {

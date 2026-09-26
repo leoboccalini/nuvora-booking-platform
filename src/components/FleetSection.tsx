@@ -39,7 +39,7 @@ const FleetSection = () => {
             id: "first",
             name: "First Class",
             vehicle: "Premium sedan",
-            passengers: 3,
+            passengers: 2,
             bags: 2,
             badge: "Most Luxurious",
             badgeColor: "bg-gold",
