@@ -1,0 +1,509 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Mobile UX Fixes */
+@layer base {
+  /* Prevenir zoom nos inputs mobile */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Prevenir scroll horizontal */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Smooth scroll e sem bounce em iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: none;
+  }
+  
+  /* Container principal com largura máxima para desktop */
+  #root {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* No mobile, usar largura total */
+  @media (max-width: 768px) {
+    #root {
+      max-width: 100%;
+    }
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* BLACKLANE Custom Colors */
+    --gold: 48 100% 50%;           /* #FFD900 */
+    --gold-dark: 45 85% 45%;       /* Dourado escuro */
+    --gold-darker: 40 75% 40%;     /* Dourado mais escuro */
+    --dark-primary: 0 0% 0%;       /* Preto absoluto */
+    --dark-secondary: 0 0% 5%;     /* Preto secundário */
+    --dark-tertiary: 0 0% 10%;     /* Cinza muito escuro */
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 51 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background-color: #000000 !important;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #000000 !important;
+    color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  #root {
+    background-color: #000000;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Prevenir scroll horizontal em mobile e tablet */
+  @media (max-width: 1024px) {
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+    }
+    
+    * {
+      max-width: 100% !important;
+    }
+    
+    /* Garantir que nenhum elemento ultrapasse a largura da tela */
+    body > *, #root > * {
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+  }
+}
+
+/* BLACKLANE Custom Styles */
+@layer utilities {
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+  
+  .bg-gold-dark {
+    background-color: hsl(var(--gold-dark));
+  }
+  
+  .bg-gold-darker {
+    background-color: hsl(var(--gold-darker));
+  }
+  
+  .bg-dark-primary {
+    background-color: hsl(var(--dark-primary));
+  }
+  
+  .bg-dark-secondary {
+    background-color: hsl(var(--dark-secondary));
+  }
+  
+  .bg-dark-tertiary {
+    background-color: hsl(var(--dark-tertiary));
+  }
+  
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  
+  .text-gold-dark {
+    color: hsl(var(--gold-dark));
+  }
+  
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+  
+  .border-gold-20 {
+    border-color: hsl(var(--gold) / 0.2);
+  }
+  
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-dark)) 50%, hsl(var(--gold-darker)) 100%);
+  }
+  
+  .bg-gold-gradient-light {
+    background: linear-gradient(135deg, hsl(var(--gold) / 0.8) 0%, hsl(var(--gold)) 100%);
+  }
+  
+  .bg-gold-gradient-dark {
+    background: linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(var(--gold-darker)) 100%);
+  }
+  
+  .hover-gold-glow {
+    transition: all 0.3s ease;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spin-reverse 2s linear infinite;
+  }
+
+  /* Fade In Animation */
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Carrossel infinito de parceiros */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Background animado com gradiente */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .bg-gradient-animated {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--dark-primary)) 0%,
+      hsl(var(--dark-secondary)) 25%,
+      hsl(var(--gold) / 0.05) 45%,
+      hsl(var(--gold) / 0.08) 55%,
+      hsl(var(--dark-secondary)) 75%,
+      hsl(var(--dark-primary)) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease-in-out infinite;
+  }
+
+
+
+  /* Efeito de ondas sutis */
+  .wave-background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wave-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold) / 0.05),
+      transparent
+    );
+    animation: wave 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Efeito de brilho sutil ocasional */
+  .subtle-glow {
+    position: relative;
+  }
+
+  .subtle-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      hsl(var(--gold) / 0.03) 0%,
+      transparent 70%
+    );
+    animation: glowPulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes glowPulse {
+    0%, 70%, 100% {
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+  }
+
+  /* Performance optimizations */
+  .bg-gradient-animated,
+  .floating-particles,
+  .wave-background {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Fleet card image positioning improvements for mobile */
+  @media (max-width: 640px) {
+    .fleet-card-media {
+      transform: scale(1.3) translateY(-15%) !important;
+      transform-origin: center top !important;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 768px) {
+    .fleet-card-media {
+      transform: scale(1.25) translateY(-12%) !important;
+      transform-origin: center top !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .fleet-card-media {
+      transform: scale(1.1) translateY(-5%) !important;
+      transform-origin: center center !important;
+    }
+  }
+
+  /* Scroll Reveal Animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-reveal-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .scroll-reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .scroll-reveal-fade {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .scroll-reveal-fade.visible {
+    opacity: 1;
+  }
+
+  /* Stagger animations */
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.6s; }
+
+  /* Prevenir scroll horizontal especificamente para mobile e tablet */
+  @media screen and (max-width: 1024px) {
+    /* Garantir que o formulário de booking não cause overflow */
+    .bg-white.rounded-lg, .bg-white.rounded-xl {
+      max-width: calc(100vw - 2rem) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    
+    /* Ajustar grids para não ultrapassar a tela */
+    .grid {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Garantir que inputs e buttons não causem overflow */
+    input, button, select, textarea {
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Ajustar padding para mobile - apenas para elementos não críticos */
+    .px-4:not(.absolute) { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+    .px-6:not(.absolute) { padding-left: 1rem !important; padding-right: 1rem !important; }
+    .px-8:not(.absolute) { padding-left: 1rem !important; padding-right: 1rem !important; }
+  }
+
+  /* Para tablets - ajustes mais suaves */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+    .px-6 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+    .px-8 { padding-left: 2rem !important; padding-right: 2rem !important; }
+  }
+
+}
+
+
+
+
+/* Portfolio shell: retain the source design, with an explicit demonstration label. */
+.demo-banner { position: relative; z-index: 10000; background: #ffd900; color: #161616; text-align: center; padding: 9px 12px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+nav.fixed { top: 34px; }
+html { scroll-padding-top: 130px; }
+#root { max-width: none; }
+@media (max-width: 480px) { .demo-banner { font-size: 9px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } .scroll-reveal, .scroll-reveal-scale, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-fade { opacity: 1; transform: none; } }
