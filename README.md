@@ -2,6 +2,8 @@
 
 Nuvora is a fictional white-label booking experience for executive mobility, aviation, nautical services, and other appointment-based premium services. It is an independent product demo by Leo Boccalini.
 
+**[View the live demo](https://nuvora-booking-platform.vercel.app/)**
+
 ## What it demonstrates
 
 - A responsive booking flow for a transport service
